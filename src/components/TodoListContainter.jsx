@@ -3,16 +3,7 @@ import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 const TodoListContainer = () => {
-  const todos = [
-    {
-      id: 1,
-      title: "react를 배워봅시다.",
-    },
-    {
-      id: 2,
-      title: "redux를 배워봅시다.",
-    },
-  ] // 임시
+  const todos = useSelector((state) => state.todos.todos);
 
   return (
     <StTodos>

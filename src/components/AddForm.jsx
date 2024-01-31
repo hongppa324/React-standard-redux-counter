@@ -2,15 +2,19 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addTodo } from "../redux/modules/todos";
 import styled from "styled-components";
+import { v4 as uuidv4 } from "uuid";
 
 const AddForm = () => {
   const [title, setTitle] = useState("");
-
+  const todos = useSelector((state) => state.todos.todos);
+  const dispatch = useDispatch();
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    
+    if (title === "") {
+      return;
+    }
+    dispatch(addTodo({ id: uuidv4(), title }));
   };
-
   return (
     <StFormContainer>
       <form onSubmit={onSubmitHandler}>
